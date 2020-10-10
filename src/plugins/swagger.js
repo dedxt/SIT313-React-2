@@ -9,18 +9,7 @@ const swaggerOptions = {
         'version': `${process.env.npm_package_version}`
     },
     documentationPath: "/swagger",
-    securityDefinitions: {
-        'user': {
-            type: 'apiKey',    // apiKey is defined by the Swagger spec
-            name: 'Authorization',    // the name of the query parameter / header
-            in: 'header'        // how the key is passed
-        },
-        'admin': {
-            type: 'apiKey',    // apiKey is defined by the Swagger spec
-            name: 'Authorization',    // the name of the query parameter / header
-            in: 'header'        // how the key is passed
-        }
-    }
+    
 };
 
 export function register(server, options) {
