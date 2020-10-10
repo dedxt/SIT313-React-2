@@ -41,6 +41,45 @@ const getTasks = {
     }
 }
 
+const getTask = {
+    method: "GET",
+    path: "/api/tasks/getTasks/{_id}",
+    options: {
+        description: "get Tasks",
+        tags: ["api", "task"],
+        handler: (request, h) => {
+            console.log("route called")
+            return new Promise((resolve, reject) => {
+                Controller.TaskBaseController.getTask(request.params._id, function (
+                    err,
+                    data
+                ) {
+                    if (err) reject(UniversalFunctions.sendError(err));
+                    else
+                        resolve(
+                            UniversalFunctions.sendSuccess(
+                                Config.APP_CONSTANTS.STATUS_MSG.SUCCESS.DEFAULT,
+                                data
+                            )
+                        );
+                });
+            });
+        },
+        validate: {
+            failAction: UniversalFunctions.failActionFunction,
+            params: {
+                _id: Joi.string().required()
+            }
+        },
+        plugins: {
+            "hapi-swagger": {
+                responseMessages:
+                    UniversalFunctions.CONFIG.APP_CONSTANTS.swaggerDefaultResponseMessages
+            }
+        }
+    }
+}
+
 const createTask = {
     method: "POST",
     path: "/api/tasks/createTask",
@@ -94,5 +133,5 @@ const createTask = {
     }
 }
 
-const TaskBaseRoutes = [getTasks, createTask];
+const TaskBaseRoutes = [getTasks, createTask, getTask];
 export default TaskBaseRoutes;

@@ -6,7 +6,11 @@ import UniversalFunctions from "../../utils/universalFunctions";
 const getTasks = (callback) => {
     let tasks;
     async.series([(cb) => {
-        Service.TaskService.getTask({}, { __v: 0 }, {}, (err, data) => {
+        Service.TaskService.getTask({}, {
+            title: 1,
+            expiryDate: 1,
+            _id: 1
+        }, {}, (err, data) => {
             if (err) cb(err)
             else {
                 tasks = data;
@@ -17,6 +21,27 @@ const getTasks = (callback) => {
         (err, result) => {
             if (err) callback(err);
             else callback(null, { tasks });
+        });
+};
+
+const getTask = (_id, callback) => {
+    let tasks;
+    async.series([(cb) => {
+        Service.TaskService.getTask({
+            _id
+        }, { __v: 0 }, {}, (err, data) => {
+            if (err) cb(err)
+            else if (data.length === 0) {
+                cb(UniversalFunctions.CONFIG.APP_CONSTANTS.STATUS_MSG.ERROR.NO_TASK_FOUND);
+            } else {
+                tasks = data[0];
+                cb();
+            }
+        })
+    }],
+        (err, result) => {
+            if (err) callback(err);
+            else callback(null, { task: tasks });
         });
 };
 
@@ -59,5 +84,6 @@ const createTask = (payload, callback) => {
 
 module.exports = {
     getTasks: getTasks,
-    createTask: createTask
+    createTask: createTask,
+    getTask: getTask
 };
