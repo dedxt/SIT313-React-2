@@ -1,6 +1,8 @@
 # iCrowd Task
 
 This app uses [Hapi Framework](https://hapijs.com) and [Hapi Swagger](https://github.com/glennjones/hapi-swagger)
+Used Hapi(express based) to save some work.
+For check api running use Swagger-installed for checking backend.
 
 # Contents
 
@@ -96,4 +98,4 @@ $ npm run build
 $ npm run startProd
 ```
 
-The current version of your application would be running on **http://localhost:8000** or **http://IP_OF_SERVER:8000** (in case you are running on the server)
+The current version of your application would be running on **http://localhost:8000** or **http://IP_OF_SERVER:8000)
