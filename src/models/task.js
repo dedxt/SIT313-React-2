@@ -17,7 +17,7 @@ var task = new Schema({
     reward: { type: Number },
     noOfWorkers: { type: Number },
     translatedText: { type: String },
-    decisionBool: { type: Boolean },
+    decisionBool: { type: String },
     choice1: { type: String },
     choice2: { type: String },
     choice3: { type: String },

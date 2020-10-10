@@ -116,7 +116,7 @@ const createTask = {
                 reward: Joi.number().required(),
                 noOfWorkers: Joi.number().required(),
                 translatedText: Joi.string().optional().allow(''),
-                decisionBool: Joi.boolean().optional().allow(''),
+                decisionBool: Joi.string().optional().allow(''),
                 choice1: Joi.string().optional().allow(''),
                 choice2: Joi.string().optional().allow(''),
                 choice3: Joi.string().optional().allow(''),
